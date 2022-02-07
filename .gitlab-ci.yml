@@ -16,7 +16,7 @@ renovate:dry-run:
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
 
 lint:
-  image: renovate/node:16.13.2@sha256:69e17c4554b67a226ae6c0d5b4e121b6ec2945c779ee97797ec1608ab758134f
+  image: renovate/node:16.13.2@sha256:aea0e6c3fe9d391a66a9e7edbcb3373287967a16775357e5e905b6f1a27f25c9
   cache:
     key:
       files:
@@ -32,7 +32,7 @@ lint:
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
 
 release:
-  image: renovate/node:16.13.2@sha256:69e17c4554b67a226ae6c0d5b4e121b6ec2945c779ee97797ec1608ab758134f
+  image: renovate/node:16.13.2@sha256:aea0e6c3fe9d391a66a9e7edbcb3373287967a16775357e5e905b6f1a27f25c9
   stage: release
   cache:
     key:
