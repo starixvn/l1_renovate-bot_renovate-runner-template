@@ -13,4 +13,4 @@ variables:
   DOCKER_TLS_CERTDIR: /certs
   DOCKER_CERT_PATH: /certs/client
   CI_RENOVATE_SERVICE: docker:20.10.13-dind@sha256:41bd636ca74163b65972d707fc43f6b955d9cc87d7fffaef76475b8a2eb9c323
-  CI_RENOVATE_IMAGE: renovate/renovate:32.4.1-slim@sha256:a91b42d070980cc0ab0eb32a04f758c5552c1e6e8148047893dd86a6df4e4d7a
+  CI_RENOVATE_IMAGE: renovate/renovate:32.6.0-slim@sha256:6a722989e5402841f18b1a488dc3b117fd6afae0f61544134069fd3dba5bba83
