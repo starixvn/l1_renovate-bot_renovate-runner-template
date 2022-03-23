@@ -1,6 +1,6 @@
 {
   "devDependencies": {
-    "@semantic-release/gitlab": "7.0.4",
+    "@semantic-release/gitlab": "7.1.0",
     "conventional-changelog-conventionalcommits": "4.6.3",
     "prettier": "2.6.0",
     "semantic-release": "19.0.2"
