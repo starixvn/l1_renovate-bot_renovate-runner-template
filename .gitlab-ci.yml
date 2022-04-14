@@ -43,6 +43,7 @@ release:
   before_script:
     - npm ci --cache .npm --prefer-offline
   script:
-    - npx --no-install semantic-release --debug
+    - git config --global --add safe.directory $PWD
+    - npx --no-install semantic-release
   rules:
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
