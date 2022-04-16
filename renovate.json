@@ -39,6 +39,12 @@
     {
       "matchPackageNames": ["renovate/node"],
       "versioning": "node"
+    },
+    {
+      "description": "Full image is sometimes behind, so we need to force a new MR",
+      "matchPackageNames": ["renovate/renovate"],
+      "matchUpdateTypes": ["major", "minor", "patch"],
+      "recreateClosed": true
     }
   ],
   "regexManagers": [
