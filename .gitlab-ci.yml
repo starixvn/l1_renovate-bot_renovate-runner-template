@@ -8,12 +8,18 @@ stages:
   - deploy
   - release
 
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS && $CI_PIPELINE_SOURCE == "push"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
+    - if: $CI_COMMIT_BRANCH
+
 renovate:dry-run:
   script:
-    - renovate --dry-run=true $RENOVATE_EXTRA_FLAGS
-  rules:
-    - if: '$CI_COMMIT_BRANCH'
-    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - renovate --dry-run=full $RENOVATE_EXTRA_FLAGS
 
 lint:
   image: renovate/node:16.15.0@sha256:5b1d9a1e9de40425e8b0c73a82bcd693b16b4677d6297978d6951e4f6b014464
@@ -27,9 +33,6 @@ lint:
     - npm ci --cache .npm --prefer-offline
   script:
     - npm run prettier
-  rules:
-    - if: '$CI_COMMIT_BRANCH'
-    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
 
 release:
   image: renovate/node:16.15.0@sha256:5b1d9a1e9de40425e8b0c73a82bcd693b16b4677d6297978d6951e4f6b014464
@@ -46,4 +49,4 @@ release:
     - git config --global --add safe.directory $PWD
     - npx --no-install semantic-release
   rules:
-    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
