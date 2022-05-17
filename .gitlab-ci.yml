@@ -21,6 +21,7 @@ renovate:dry-run:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: never
+    - if: $CI_COMMIT_BRANCH
 
 lint:
   image: renovate/node:16.15.0@sha256:4a5086462974dc38d4ff70871ac59429d0acde33eb5b9fb33aa3a9d892b47292
@@ -37,6 +38,7 @@ lint:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: never
+    - if: $CI_COMMIT_BRANCH
 
 release:
   image: renovate/node:16.15.0@sha256:4a5086462974dc38d4ff70871ac59429d0acde33eb5b9fb33aa3a9d892b47292
