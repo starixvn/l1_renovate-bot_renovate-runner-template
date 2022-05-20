@@ -5,7 +5,7 @@ variables:
   RENOVATE_ONBOARDING_CONFIG: '{"$$schema": "https://docs.renovatebot.com/renovate-schema.json", "extends": ["config:base"] }'
   RENOVATE_OPTIMIZE_FOR_DISABLED: 'true'
   RENOVATE_REPOSITORY_CACHE: 'enabled'
-  RENOVATE_REQUIRE_CONFIG: 'true'
+  RENOVATE_REQUIRE_CONFIG: 'required'
   RENOVATE_ONBOARDING: 'false'
   RENOVATE_IGNORE_PR_AUTHOR: 'true'
   RENOVATE_EXTENDS: 'github>whitesource/merge-confidence:beta'
