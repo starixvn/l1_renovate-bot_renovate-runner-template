@@ -10,7 +10,7 @@ stages:
 
 workflow:
   rules:
-    - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS
+    - if: $CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS
       when: never
     - when: always
 
@@ -20,7 +20,7 @@ renovate:dry-run:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: never
-    - if: $CI_COMMIT_BRANCH
+    - when: always
 
 lint:
   image: renovate/node:16.15.0@sha256:4a5086462974dc38d4ff70871ac59429d0acde33eb5b9fb33aa3a9d892b47292
@@ -37,7 +37,7 @@ lint:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: never
-    - if: $CI_COMMIT_BRANCH
+    - when: always
 
 release:
   image: renovate/node:16.15.0@sha256:4a5086462974dc38d4ff70871ac59429d0acde33eb5b9fb33aa3a9d892b47292
