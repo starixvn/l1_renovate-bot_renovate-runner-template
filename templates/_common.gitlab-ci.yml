@@ -4,7 +4,7 @@ variables:
   RENOVATE_PLATFORM: gitlab
   RENOVATE_ONBOARDING_CONFIG: '{"$$schema": "https://docs.renovatebot.com/renovate-schema.json", "extends": ["config:base"] }'
   RENOVATE_OPTIMIZE_FOR_DISABLED: 'true'
-  RENOVATE_REPOSITORY_CACHE: 'true'
+  RENOVATE_REPOSITORY_CACHE: 'enabled'
   RENOVATE_REQUIRE_CONFIG: 'true'
   RENOVATE_ONBOARDING: 'false'
   RENOVATE_IGNORE_PR_AUTHOR: 'true'
