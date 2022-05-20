@@ -17,7 +17,7 @@ default:
   cache:
     key: ${CI_COMMIT_REF_SLUG}-renovate
     paths:
-      - renovate/cache/renovate/repository/**/*.json
+      - renovate/cache/renovate/repository/
 
 renovate:
   stage: deploy
