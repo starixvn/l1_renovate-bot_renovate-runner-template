@@ -52,8 +52,8 @@
       "description": "Update docker references in gitlab variables",
       "fileMatch": ["\\.gitlab-ci\\.yml$"],
       "matchStrings": [
-        "CI_RENOVATE_IMAGE\\s*:\\s*(?<depName>renovate\\/renovate):(?<currentValue>[a-z0-9.-]+)(?:@(?<currentDigest>sha256:[a-f0-9]+))?",
-        "CI_RENOVATE_SERVICE\\s*:\\s*(?<depName>docker):(?<currentValue>[a-z0-9.-]+)(?:@(?<currentDigest>sha256:[a-f0-9]+))?"
+        "CI_RENOVATE_IMAGE\\s*:\\s*(?<depName>[^:]+?):(?<currentValue>[a-z0-9.-]+)(?:@(?<currentDigest>sha256:[a-f0-9]+))?",
+        "CI_RENOVATE_SERVICE\\s*:\\s*(?<depName>[^:]+?):(?<currentValue>[a-z0-9.-]+)(?:@(?<currentDigest>sha256:[a-f0-9]+))?"
       ],
       "datasourceTemplate": "docker",
       "versioningTemplate": "docker"
