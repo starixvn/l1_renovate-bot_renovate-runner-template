@@ -111,3 +111,14 @@ For renovate configuration basics checkout the official self-hosting [docs](http
 For other self-hosted GitLab samples you can check the [Renovate Gitlab Configuration](https://github.com/renovatebot/docker-renovate/blob/HEAD/docs/gitlab.md).
 
 If you are using a self-hosted runner, please checkout the [GitLab docs for Docker DinD configuration](https://docs.gitlab.com/ee/ci/docker/using_docker_build.html#use-the-docker-executor-with-the-docker-image-docker-in-docker).
+
+<b>Note</b>: the default Renovate dind configuration connects to docker over TLS. To enable this e.g. for the GitLab Kubernetes runner add the following:
+
+```toml
+[[runners]]
+  ...
+  [[runners.kubernetes.volumes.empty_dir]]
+    name = "docker-certs"
+    mount_path = "/certs/client"
+    medium = "Memory"
+```
