@@ -3,4 +3,4 @@ include: '/templates/_common.gitlab-ci.yml'
 image: ${CI_RENOVATE_IMAGE}
 
 variables:
-  CI_RENOVATE_IMAGE: renovate/renovate:32.108.0@sha256:2338f47786a230afc6a1551cf2218a4e17fddc26750e2572b8f02f1a86f793a3
+  CI_RENOVATE_IMAGE: renovate/renovate:32.109.0@sha256:6b1fa02db87934bdc166f0fbba77800681b8cfe411868d437994a4ba55d3dc8e
