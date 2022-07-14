@@ -23,7 +23,7 @@ renovate:dry-run:
     - when: always
 
 lint:
-  image: renovate/node:16.16.0@sha256:6910437908a7be5285cadc0849957e8b403e6979bc4de6495794400f28572119
+  image: renovate/node:16.16.0@sha256:421eec2747bc116861cfc8441a8d2b743abb34f532aad59ebf3cbccd75c2940e
   cache:
     key:
       files:
@@ -40,7 +40,7 @@ lint:
     - when: always
 
 release:
-  image: renovate/node:16.16.0@sha256:6910437908a7be5285cadc0849957e8b403e6979bc4de6495794400f28572119
+  image: renovate/node:16.16.0@sha256:421eec2747bc116861cfc8441a8d2b743abb34f532aad59ebf3cbccd75c2940e
   stage: release
   cache:
     key:
