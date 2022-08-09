@@ -27,6 +27,7 @@ renovate:
   script:
     - echo $DOCKER_TLS_CERTDIR
     - echo $DOCKER_TLS_VERIFY
+    - echo $DOCKER_HOST
     - renovate $RENOVATE_EXTRA_FLAGS
   artifacts:
     when: always
