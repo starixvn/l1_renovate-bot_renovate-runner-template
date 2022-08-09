@@ -25,6 +25,8 @@ renovate:
   rules:
     - if: '$CI_PIPELINE_SOURCE == "schedule"'
   script:
+    - echo $DOCKER_TLS_CERTDIR
+    - echo $DOCKER_TLS_VERIFY
     - renovate $RENOVATE_EXTRA_FLAGS
   artifacts:
     when: always
