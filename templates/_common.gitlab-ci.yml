@@ -34,3 +34,5 @@ renovate:
     expire_in: 1d
     paths:
       - '$RENOVATE_LOG_FILE'
+  tags:
+    - renovate
