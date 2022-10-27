@@ -6,7 +6,7 @@ variables:
   RENOVATE_OPTIMIZE_FOR_DISABLED: 'true'
   RENOVATE_REPOSITORY_CACHE: 'enabled'
   RENOVATE_REQUIRE_CONFIG: 'required'
-  RENOVATE_ONBOARDING: 'false'
+  RENOVATE_ONBOARDING: 'true'
   RENOVATE_IGNORE_PR_AUTHOR: 'true'
   RENOVATE_EXTENDS: 'github>whitesource/merge-confidence:beta'
   RENOVATE_LOG_FILE: renovate-log.ndjson
