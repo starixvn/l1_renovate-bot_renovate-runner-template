@@ -28,6 +28,7 @@ renovate:
     - echo $DOCKER_TLS_CERTDIR
     - echo $DOCKER_TLS_VERIFY
     - echo $DOCKER_HOST
+    - echo $RENOVATE_BRANCH_CONCURRENT_LIMIT
     - renovate $RENOVATE_EXTRA_FLAGS
   artifacts:
     when: always
