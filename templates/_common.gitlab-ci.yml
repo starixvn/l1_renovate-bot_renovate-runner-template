@@ -31,6 +31,7 @@ renovate:
     - echo $RENOVATE_BRANCH_CONCURRENT_LIMIT
     - echo $RENOVATE_PR_CONCURRENT_LIMIT
     - echo $RENOVATE_PR_HOURLY_LIMIT
+    - echo $RENOVATE_SEPARATE_MAJOR_MINOR
     - renovate $RENOVATE_EXTRA_FLAGS
   artifacts:
     when: always
