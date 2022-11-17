@@ -29,6 +29,8 @@ renovate:
     - echo $DOCKER_TLS_VERIFY
     - echo $DOCKER_HOST
     - echo $RENOVATE_BRANCH_CONCURRENT_LIMIT
+    - echo $RENOVATE_PR_CONCURRENT_LIMIT
+    - echo $RENOVATE_PR_HOURLY_LIMIT
     - renovate $RENOVATE_EXTRA_FLAGS
   artifacts:
     when: always
