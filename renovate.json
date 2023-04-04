@@ -2,10 +2,14 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["github>renovatebot/.github"],
   "platformAutomerge": true,
+  "prCreation": "immediate",
   "packageRules": [
     {
       "description": "Trigger breaking release for major updates",
-      "matchPackageNames": ["docker", "renovate/renovate"],
+      "matchPackageNames": [
+        "renovate/renovate",
+        "ghcr.io/renovatebot/renovate"
+      ],
       "matchUpdateTypes": ["major"],
       "semanticCommitType": "feat",
       "commitBody": "BREAKING CHANGE: Major update",
@@ -13,21 +17,30 @@
     },
     {
       "description": "Trigger feature release for minor updates",
-      "matchPackageNames": ["docker", "renovate/renovate"],
+      "matchPackageNames": [
+        "renovate/renovate",
+        "ghcr.io/renovatebot/renovate"
+      ],
       "matchUpdateTypes": ["minor"],
       "semanticCommitType": "feat",
       "automergeType": "pr"
     },
     {
       "description": "Trigger fix release for patch updates",
-      "matchPackageNames": ["docker", "renovate/renovate"],
+      "matchPackageNames": [
+        "renovate/renovate",
+        "ghcr.io/renovatebot/renovate"
+      ],
       "matchUpdateTypes": ["patch", "digest"],
       "semanticCommitType": "fix",
       "automergeType": "pr"
     },
     {
       "description": "Allow updates after 3 days (exclude renovate)",
-      "excludePackageNames": ["renovate/renovate"],
+      "excludePackageNames": [
+        "renovate/renovate",
+        "ghcr.io/renovatebot/renovate"
+      ],
       "separateMinorPatch": true,
       "stabilityDays": 3
     },
@@ -37,12 +50,15 @@
       "extends": ["schedule:daily"]
     },
     {
-      "matchPackageNames": ["renovate/node"],
+      "matchPackageNames": ["ghcr.io/containerbase/node"],
       "versioning": "node"
     },
     {
       "description": "Full image is sometimes behind, so we need to force a new MR",
-      "matchPackageNames": ["renovate/renovate"],
+      "matchPackageNames": [
+        "renovate/renovate",
+        "ghcr.io/renovatebot/renovate"
+      ],
       "matchUpdateTypes": ["major", "minor", "patch"],
       "recreateClosed": true
     }
@@ -52,8 +68,7 @@
       "description": "Update docker references in gitlab variables",
       "fileMatch": ["\\.gitlab-ci\\.yml$"],
       "matchStrings": [
-        "CI_RENOVATE_IMAGE\\s*:\\s*(?<depName>[^:]+?):(?<currentValue>[a-z0-9.-]+)(?:@(?<currentDigest>sha256:[a-f0-9]+))?",
-        "CI_RENOVATE_SERVICE\\s*:\\s*(?<depName>[^:]+?):(?<currentValue>[a-z0-9.-]+)(?:@(?<currentDigest>sha256:[a-f0-9]+))?"
+        "CI_RENOVATE_IMAGE[A-Z_]*\\s*:\\s*(?<depName>[^:]+?):(?<currentValue>[a-z0-9.-]+)(?:@(?<currentDigest>sha256:[a-f0-9]+))?"
       ],
       "datasourceTemplate": "docker",
       "versioningTemplate": "docker"

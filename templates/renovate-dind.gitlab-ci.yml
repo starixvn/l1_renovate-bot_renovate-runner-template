@@ -1,17 +1,7 @@
-include: '/templates/_common.gitlab-ci.yml'
+include: '/templates/renovate.gitlab-ci.yml'
 
-image: ${CI_RENOVATE_IMAGE}
-
-services:
-  - name: ${CI_RENOVATE_SERVICE}
-    alias: docker
-
-variables:
-  DOCKER_DRIVER: overlay2
-  DOCKER_HOST: tcp://docker:2376
-  DOCKER_TLS_VERIFY: 1
-  DOCKER_TLS_CERTDIR: /certs
-  DOCKER_CERT_PATH: /certs/client
-  CI_RENOVATE_SERVICE: docker:20.10.21-dind@sha256:80e81aecd51d80e63ae4cbbd5eb1968e84edd151b90ef2c2f17e1004c7a3832b
-  CI_RENOVATE_IMAGE: renovate/renovate:34.26.4-slim@sha256:bb29779715d36d8106b0783ccb79c51bf8789df6a06c9ead38a4a296d96a8490
-
+deprecated:
+  image: alpine@sha256:ff6bdca1701f3a8a67e328815ff2346b0e4067d32ec36b7992c1fdc001dc8517
+  stage: test
+  script:
+    - echo "This template is deprecated! Use '/templates/renovate.gitlab-ci.yml' instead."

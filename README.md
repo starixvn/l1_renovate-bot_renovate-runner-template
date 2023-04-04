@@ -17,6 +17,8 @@ Currently one advantage of public projects is that CI minutes are not restricted
 ## Configure CI/CD variables
 
 You need to add a GitLab [Personal Access Token](https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html#creating-a-personal-access-token) (scopes: `read_user`, `api` and `write_repository`) as `RENOVATE_TOKEN` to CI/CD variables.
+You can also use a GitLab [Group Access Token](https://docs.gitlab.com/ee/user/group/settings/group_access_tokens.html).
+Checkout Renovate platform [docs](https://docs.renovatebot.com/modules/platform/gitlab/) and #53 for more information.
 
 It is also recommended to configure a [GitHub.com Personal Access Token](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/creating-a-personal-access-token) (minimum scopes) as `GITHUB_COM_TOKEN` so that your bot can make authenticated requests to github.com for Changelog retrieval as well as for any dependency that uses GitHub tags.
 Without such a token, github.com's API will rate limit requests and make such lookups unreliable.
@@ -41,30 +43,21 @@ Create a `.gitlab-ci.yml` file in the repository like the following:
 ```yaml
 include:
     - project: 'renovate-bot/renovate-runner'
-      file: '/templates/renovate-dind.gitlab-ci.yml'
+      file: '/templates/renovate.gitlab-ci.yml'
 ```
 
-If you are using a custom GitLab Kubernetes runner you probably need to downgrade the Docker DinD service because of [containerd/containerd#4837](https://github.com/containerd/containerd/issues/4837)
+**Note:** Docker DinD templates are deprecated and is now using the default version with slim image.
 
-```yaml
-include:
-    - project: 'renovate-bot/renovate-runner'
-      file: '/templates/renovate-dind.gitlab-ci.yml'
-
-services:
-    - docker:19.03.15-dind
-```
-
-Alternatively, if you cannot use the gitlab.com hosted or self-hosted privileged runners, include the following template instead.
-
-**Note:** This will use the full renovate image, which isn't capable of respecting any binary contraints.
-It will always use the latest tools to update lock files.
-So please prefer the DinD version.
+Alternatively, if you can use the full renovate image.
+It will have the latest tools to update lock files preinstalled and is much bigger.
+So please prefer the default version.
 
 ```yaml
 include:
     - project: 'renovate-bot/renovate-runner'
       file: '/templates/renovate.gitlab-ci.yml'
+
+image: ${CI_RENOVATE_IMAGE_FULL}
 ```
 
 To prevent unexpected changes in your pipeline, you can pin the version of this template and include it in your Renovate updates:
@@ -72,8 +65,8 @@ To prevent unexpected changes in your pipeline, you can pin the version of this 
 ```yaml
 include:
     - project: 'renovate-bot/renovate-runner'
-      file: '/templates/renovate-dind.gitlab-ci.yml'
-      ref: v1.0.0
+      file: '/templates/renovate.gitlab-ci.yml'
+      ref: v12.0.0
 ```
 
 Please check this project's [Releases page](https://gitlab.com/renovate-bot/renovate-runner/-/releases)
@@ -87,12 +80,22 @@ Example to run on schedules and pushes:
 ```yaml
 include:
     - project: 'renovate-bot/renovate-runner'
-      file: '/templates/renovate-dind.gitlab-ci.yml'
+      file: '/templates/renovate.gitlab-ci.yml'
 
 renovate:
     rules:
         - if: '$CI_PIPELINE_SOURCE == "schedule"'
         - if: '$CI_PIPELINE_SOURCE == "push"'
+```
+
+You can now use remote includes to use these templates on self-hosted gitlab instances.
+The folling samples uses the `v12.0.0` tag.
+You can also use `main` branch but a tag is preferred.
+Refer to GitLab [include](https://docs.gitlab.com/ee/ci/yaml/includes.html) samples for more information.
+
+```yaml
+include:
+    - remote: https://gitlab.com/renovate-bot/renovate-runner/-/raw/v12.0.0/templates/renovate.gitlab-ci.yml
 ```
 
 ## Configure the Schedule
@@ -105,20 +108,8 @@ Because the default pipeline only runs on schedules, you need to use the `play` 
 
 ## Other config options
 
-We've changed some renovate defaults for GitLab to better reflect the app's default behavior, so please see [here](./templates/_common.gitlab-ci.yml#L1) for changed options.
-For renovate configuration basics checkout the official self-hosting [docs](https://docs.renovatebot.com/self-hosting/#configuration).
+We've changed some renovate defaults for GitLab to better reflect the app's default behavior, so please see [here](./templates/renovate.gitlab-ci.yml#L1) for changed options.
+Onboarding and autodiscover is disabled by default for security reasons.
+For renovate configuration basics checkout the official self-hosting [docs](https://docs.renovatebot.com/self-hosted-configuration/).
 
 For other self-hosted GitLab samples you can check the [Renovate Gitlab Configuration](https://github.com/renovatebot/docker-renovate/blob/HEAD/docs/gitlab.md).
-
-If you are using a self-hosted runner, please checkout the [GitLab docs for Docker DinD configuration](https://docs.gitlab.com/ee/ci/docker/using_docker_build.html#use-the-docker-executor-with-the-docker-image-docker-in-docker).
-
-<b>Note</b>: the default Renovate dind configuration connects to docker over TLS. To enable this e.g. for the GitLab Kubernetes runner add the following:
-
-```toml
-[[runners]]
-  ...
-  [[runners.kubernetes.volumes.empty_dir]]
-    name = "docker-certs"
-    mount_path = "/certs/client"
-    medium = "Memory"
-```
