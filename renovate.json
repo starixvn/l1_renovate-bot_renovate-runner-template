@@ -42,7 +42,7 @@
         "ghcr.io/renovatebot/renovate"
       ],
       "separateMinorPatch": true,
-      "stabilityDays": 3
+      "minimumReleaseAge": "3 days"
     },
     {
       "description": "Schedule digest updates daily",
@@ -60,11 +60,12 @@
         "ghcr.io/renovatebot/renovate"
       ],
       "matchUpdateTypes": ["major", "minor", "patch"],
-      "recreateClosed": true
+      "recreateWhen": "always"
     }
   ],
-  "regexManagers": [
+  "customManagers": [
     {
+      "customType": "regex",
       "description": "Update docker references in gitlab variables",
       "fileMatch": ["\\.gitlab-ci\\.yml$"],
       "matchStrings": [
