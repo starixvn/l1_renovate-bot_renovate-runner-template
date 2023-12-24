@@ -1,7 +1,7 @@
 include: '/templates/renovate.gitlab-ci.yml'
 
 deprecated:
-  image: alpine@sha256:ff6bdca1701f3a8a67e328815ff2346b0e4067d32ec36b7992c1fdc001dc8517
+  image: alpine@sha256:51b67269f354137895d43f3b3d810bfacd3945438e94dc5ac55fdac340352f48
   stage: test
   script:
     - echo "This template is deprecated! Use '/templates/renovate.gitlab-ci.yml' instead."
