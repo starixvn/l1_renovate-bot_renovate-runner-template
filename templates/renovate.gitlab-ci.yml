@@ -10,7 +10,7 @@ variables:
   RENOVATE_EXTENDS: 'github>whitesource/merge-confidence:beta'
   RENOVATE_LOG_FILE: renovate-log.ndjson
   RENOVATE_LOG_FILE_LEVEL: debug
-  CI_RENOVATE_IMAGE: ghcr.io/renovatebot/renovate:37.77.1@sha256:51d5b54ac1b9d54548e09599c5be99a2e200de73edd320c6ac472b250b56b4cb
+  CI_RENOVATE_IMAGE: ghcr.io/renovatebot/renovate:37.115.0@sha256:6db0fce154cfc1860526e1050bab5e0635fb6f2f1d84190f91608327910dfe20
 
 .renovate:
   cache:
