@@ -1,7 +1,7 @@
 variables:
   RENOVATE_ENDPOINT: $CI_API_V4_URL
   RENOVATE_PLATFORM: gitlab
-  CI_RENOVATE_IMAGE: ghcr.io/renovatebot/renovate:37.140.14@sha256:2c50e4f7b94c9e84288eda6bc26343cc94376a885f3d5be72ebd3a5adddf0584
+  CI_RENOVATE_IMAGE: ghcr.io/renovatebot/renovate:37.149.1@sha256:e22e687865bdc00e0a05f1c113cfed4bb0aa4783c108073f892282f8eb117d24
 
 renovate-config-validator:
   stage: test
