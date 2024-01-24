@@ -11,8 +11,7 @@
         "ghcr.io/renovatebot/renovate"
       ],
       "matchUpdateTypes": ["major"],
-      "semanticCommitType": "feat",
-      "commitBody": "BREAKING CHANGE: Major update",
+      "commitMessagePrefix": "feat(deps)!",
       "automergeType": "pr"
     },
     {
@@ -36,31 +35,25 @@
       "automergeType": "pr"
     },
     {
-      "description": "Allow updates after 3 days (exclude renovate)",
-      "excludePackageNames": [
-        "renovate/renovate",
-        "ghcr.io/renovatebot/renovate"
-      ],
-      "separateMinorPatch": true,
-      "minimumReleaseAge": "3 days"
-    },
-    {
       "description": "Schedule digest updates daily",
       "matchUpdateTypes": ["digest"],
       "extends": ["schedule:daily"]
     },
     {
+      "description": "Use node versioning and chore for node images",
       "matchPackageNames": ["ghcr.io/containerbase/node"],
+      "semanticCommitType": "chore",
       "versioning": "node"
     },
     {
-      "description": "Full image is sometimes behind, so we need to force a new MR",
-      "matchPackageNames": [
-        "renovate/renovate",
-        "ghcr.io/renovatebot/renovate"
-      ],
-      "matchUpdateTypes": ["major", "minor", "patch"],
-      "recreateWhen": "always"
+      "description": "Update runner references in readme",
+      "matchDepNames": ["renovate-runner"],
+      "matchFileNames": ["README.md"],
+      "additionalBranchPrefix": "docs-",
+      "automerge": true,
+      "dependencyDashboardApproval": false,
+      "semanticCommitType": "docs",
+      "separateMajorMinor": false
     }
   ],
   "customManagers": [
@@ -73,6 +66,20 @@
       ],
       "datasourceTemplate": "docker",
       "versioningTemplate": "docker"
+    },
+    {
+      "customType": "regex",
+      "description": "Update renovate-runner references",
+      "fileMatch": ["^README\\.md$"],
+      "matchStrings": [
+        "\\s+- remote: https://gitlab\\.com/renovate-bot/renovate-runner/-/raw/(?<currentValue>v[0-9.]+)/",
+        "\\s+ref: (?<currentValue>v[0-9.]+)\\s+",
+        "\\s`(?<currentValue>v[0-9.]+)`\\s"
+      ],
+      "datasourceTemplate": "gitlab-releases",
+      "depNameTemplate": "renovate-runner",
+      "packageNameTemplate": "renovate-bot/renovate-runner",
+      "versioningTemplate": "semver"
     }
   ],
   "gitlabci": {
