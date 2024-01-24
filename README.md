@@ -66,7 +66,7 @@ To prevent unexpected changes in your pipeline, you can pin the version of this 
 include:
     - project: 'renovate-bot/renovate-runner'
       file: '/templates/renovate.gitlab-ci.yml'
-      ref: v12.0.0
+      ref: v17.48.0
 ```
 
 Please check this project's [Releases page](https://gitlab.com/renovate-bot/renovate-runner/-/releases)
@@ -89,13 +89,13 @@ renovate:
 ```
 
 You can now use remote includes to use these templates on self-hosted gitlab instances.
-The folling samples uses the `v12.0.0` tag.
+The folling samples uses the `v17.48.0` tag.
 You can also use `main` branch but a tag is preferred.
 Refer to GitLab [include](https://docs.gitlab.com/ee/ci/yaml/includes.html) samples for more information.
 
 ```yaml
 include:
-    - remote: https://gitlab.com/renovate-bot/renovate-runner/-/raw/v12.0.0/templates/renovate.gitlab-ci.yml
+    - remote: https://gitlab.com/renovate-bot/renovate-runner/-/raw/v17.48.0/templates/renovate.gitlab-ci.yml
 ```
 
 ## Configure the Schedule
