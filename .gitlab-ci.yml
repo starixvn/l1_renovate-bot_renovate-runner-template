@@ -33,7 +33,7 @@ renovate:dry-run:
     - when: always
 
 lint:
-  image: ghcr.io/containerbase/node:20.10.0@sha256:3e8d242b4a863bc652204c8a4b3df8c5734e41fb701b7447bd0f6e92b681440a
+  image: ghcr.io/containerbase/node:20.10.0@sha256:0962baccb4088d39f91741f5d90d82615f2e6bff5f9ffedf7e471a24801be368
   cache:
     key:
       files:
@@ -50,7 +50,7 @@ lint:
     - when: always
 
 release:
-  image: ghcr.io/containerbase/node:20.10.0@sha256:3e8d242b4a863bc652204c8a4b3df8c5734e41fb701b7447bd0f6e92b681440a
+  image: ghcr.io/containerbase/node:20.10.0@sha256:0962baccb4088d39f91741f5d90d82615f2e6bff5f9ffedf7e471a24801be368
   stage: release
   cache:
     key:
